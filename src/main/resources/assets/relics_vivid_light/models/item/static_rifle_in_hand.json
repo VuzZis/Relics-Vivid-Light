@@ -1,0 +1,28 @@
+{
+  "parent": "relics_vivid_light:item/handheld_lrotate",
+  "textures": {
+    "layer0": "relics_vivid_light:item/static_rifle/in_hand"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, 90, 55],
+      "translation": [0, 8, 2.5],
+      "scale": [1.36, 1.36, 0.85]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, -90, -55],
+      "translation": [0, 8, 2.5],
+      "scale": [1.36, 1.36, 0.85]
+    },
+    "firstperson_righthand": {
+      "rotation": [-25, 90, 25],
+      "translation": [2.26, 6.4, 2.26],
+      "scale": [1.36, 1.36, 0.68]
+    },
+    "firstperson_lefthand": {
+      "rotation": [-25, -90, -25],
+      "translation": [2.26, 6.4, 2.26],
+      "scale": [1.36, 1.36, 0.68]
+    }
+  }
+}

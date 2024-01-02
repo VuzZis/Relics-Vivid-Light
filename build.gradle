@@ -1,0 +1,150 @@
+buildscript {
+    repositories {
+        mavenCentral()
+
+        maven { url = 'https://maven.parchmentmc.org' }
+    }
+    dependencies {
+        classpath 'io.freefair.gradle:lombok-plugin:6.6'
+        classpath 'org.parchmentmc:librarian:1.+'
+    }
+}
+
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0.13, 6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: "io.freefair.lombok"
+apply plugin: 'java'
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+mixin {
+    add sourceSets.main, mod_id+".refmap.json"
+}
+
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    copyIdeResources = true
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'examplemod'
+
+            mods {
+                mod_id {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                mod_id {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+    maven {
+        url "https://cursemaven.com/"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
+dependencies {
+
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor "org.spongepowered:mixin:0.8.4:processor"
+    implementation fg.deobf("curse.maven:relics-mod-445274:4961215")
+    implementation fg.deobf("curse.maven:octo-lib-916747:4771977")
+
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.2.0+1.20.1")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.2.0+1.20.1:api")
+
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
+            forge_version: forge_version, forge_version_range: forge_version_range,
+            loader_version_range: loader_version_range,
+            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors: mod_authors, mod_description: mod_description,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                "MixinConfigs"            : mod_id+".mixins.json",
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : mod_authors,
+                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : mod_authors,
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+
+    finalizedBy 'reobfJar'
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
