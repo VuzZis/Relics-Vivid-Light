@@ -1,6 +1,7 @@
 package com.skoow.relics_vivid_light.common.registry;
 
 import com.skoow.relics_vivid_light.VividLight;
+import com.skoow.relics_vivid_light.common.item.BoilerRelic;
 import com.skoow.relics_vivid_light.common.item.MorphcookRelic;
 import com.skoow.relics_vivid_light.common.item.StaticRifleRelic;
 import com.skoow.relics_vivid_light.common.item.WhirlWindRelic;
@@ -15,4 +16,5 @@ public class ItemRegistry {
     public static final RegistryObject<Item> STATIC_RIFLE = ITEMS.register("static_rifle", StaticRifleRelic::new);
     public static final RegistryObject<Item> WHIRLWIND_SPEAR = ITEMS.register("whirlwind_spear", WhirlWindRelic::new);
     public static final RegistryObject<Item> MORPHCOOK = ITEMS.register("morphcook", MorphcookRelic::new);
+    public static final RegistryObject<Item> STEAM_BOILER = ITEMS.register("steam_boiler", BoilerRelic::new);
 }

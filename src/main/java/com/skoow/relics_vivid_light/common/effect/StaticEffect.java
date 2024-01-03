@@ -17,8 +17,6 @@ public class StaticEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity e, int ampl) {
-        System.out.println("STATICCC");
-        System.out.println(e.getDeltaMovement().length());
         if(e.getDeltaMovement().length() > 0.08) {
             e.hurt(e.level().damageSources().magic(),1);
         }

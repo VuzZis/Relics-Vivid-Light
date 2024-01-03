@@ -78,12 +78,17 @@ public class MorphcookRelic extends RelicItem {
             if(!recipe.isPresent()) continue;
             int smokeTime = 60;
             int curTime = stack.getOrCreateTag().getInt("smokprog");
-            System.out.println(curTime);
             if(curTime >= smokeTime) {
                 stack.getOrCreateTag().putInt("smokprog",0);
                 ItemStack newItem = recipe.get().getResultItem(RegistryAccess.EMPTY).copy();
-                if(player.canTakeItem(newItem)) {if(player.addItem(newItem)) stack.shrink(1);}
-                else {player.drop(newItem,true);stack.shrink(1);}
+                int freeSlot = inv.getFreeSlot();
+                if(inv.getSlotWithRemainingSpace(newItem) >= 0) freeSlot = inv.getSlotWithRemainingSpace(newItem);
+                if(freeSlot < 0) {
+                    player.drop(newItem,true);
+                    stack.shrink(1);
+                } else {
+                    if(inv.add(freeSlot,newItem)) stack.shrink(1);
+                }
                 break;
             }
             curTime++;
