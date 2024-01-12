@@ -48,5 +48,18 @@
   "tooltip.relics.steam_boiler.ability.emergency_heating.description" : "Почувствуйте температурный подъем внутри Котла, когда он достигает кипящего кульминационного момента. Взрывное освобождение пара толкает игрока вперёд, обеспечивая динамичный всплеск импульса. Обнимите контролируемый хаос и позвольте Паровому Котлу поднять ваше передвижение захватывающим всплеском приведенной энергии.",
   "tooltip.relics.steam_boiler.ability.emergency_heating.stat.cooldown.title" : "Остывание",
   "tooltip.relics.steam_boiler.ability.emergency_heating.stat.cooldown.value" : "%1$s секунд.",
-  "tooltip.relics.steam_boiler.ability.emergency_heating.predicate.target" : "Котёл остывает."
+  "tooltip.relics.steam_boiler.ability.emergency_heating.predicate.target" : "Котёл остывает.",
+  "item.relics_vivid_light.truefire_burner" : "Правдопламенная горелка",
+  "tooltip.relics.truefire_burner.leveling" : "Отправляйтесь в мистическое приключение с Правдопламенной горелкой - вечно горящей загадкой, питаемой истинами, которые она несет. Ваши выборы переплетаются с ее устойчивым пламенем, формируя ваш путь в захватывающем танце судьбы и желания.",
+  "tooltip.relics.truefire_burner.ability.eruption" : "Извержение",
+  "tooltip.relics.truefire_burner.ability.eruption.description" : "Правдопламенная горелка поднимает игроков в воздух с всплеском огненной энергии, оставляя жгучий след на земле.",
+  "tooltip.relics.truefire_burner.ability.eruption.stat.radius.title" : "Радиус",
+  "tooltip.relics.truefire_burner.ability.eruption.stat.radius.value" : "%1$s блоков.",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff" : "Полет в огне",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.description" : "Правдопламенная горелка развязывает свой огненный налет на близлежащие существа, нанося разрушительный урон, который оставляет прикоснувшихся на грани забвения. Остерегайтесь, ведь пламя, которое она дарит, предвестие практически неминуемой гибели для тех, кто несчастливо попадает в ее путь.",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.stat.strength.title" : "Сила",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.stat.strength.value" : "%1$s единиц мощности.",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.predicate.takeoff" : "Перезарядка.",
+  "tooltip.relics.truefire_burner.ability.eruption.predicate.eruption" : "Перезарядка.",
+  "item.relics_vivid_light.static_claw" : "Статично-заряженная клешня"
 }

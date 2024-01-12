@@ -14,6 +14,7 @@ import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityEn
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityStat;
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicLevelingData;
 import it.hurts.sskirillss.relics.items.relics.base.utils.AbilityUtils;
+import it.hurts.sskirillss.relics.items.relics.base.utils.LevelingUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -82,6 +83,7 @@ public class WhirlWindRelic extends RelicItem {
 
     private void createBubble(ItemStack stack, Entity entity) {
         summonBubble(stack,entity,new Vec3(0,0,0));
+        LevelingUtils.addExperience(stack,10);
     }
 
     private void summonBubble(ItemStack stack, Entity entity, Vec3 translate) {
@@ -124,6 +126,7 @@ public class WhirlWindRelic extends RelicItem {
         SwirlEntity swirl =  EntityRegistry.SWIRL.get().spawn((ServerLevel) player.level(),stack,player,
                 BlockPos.containing(player.getEyePosition()), MobSpawnType.EVENT,
                 true, true);
+        LevelingUtils.addExperience(stack,2);
         swirl.setRadius((int) AbilityUtils.getAbilityValue(stack,"whirl_swirl","radius"));
         swirl.drownSpeed = (int) AbilityUtils.getAbilityValue(stack,"whirl_swirl","drowning_speed");
     }

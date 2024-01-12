@@ -39,7 +39,7 @@
   "tooltip.relics.whirlwind_spear.ability.blob_a_bubble.stat.cooldown.value" : "%1$s seconds.",
   "effect.relics_vivid_light.static" : "Statified",
   "item.relics_vivid_light.steam_boiler" : "Steam Boiler",
-  "tooltip.relics.steam_boiler.levelling" : "\nIntroducing the Steam Boiler, a compact marvel forged from resilient copper. This small yet powerful boiler harnesses the might of steam, promising efficiency and reliability. Let this metal wonder fuel your ventures with its sturdy design and unwavering performance.",
+  "tooltip.relics.steam_boiler.leveling" : "\nIntroducing the Steam Boiler, a compact marvel forged from resilient copper. This small yet powerful boiler harnesses the might of steam, promising efficiency and reliability. Let this metal wonder fuel your ventures with its sturdy design and unwavering performance.",
   "tooltip.relics.steam_boiler.ability.comfort" : "Comfort",
   "tooltip.relics.steam_boiler.ability.comfort.description" : "Experience the soothing embrace of comfort as the Steam Boiler releases a steady stream of boiling steam. Bask in the warmth, and feel your vitality rejuvenate at an accelerated pace. Let the healing power of the steam guide you, turning the Steam Boiler into your own personal oasis of faster regeneration.",
   "tooltip.relics.steam_boiler.ability.comfort.stat.regeneration_level.title" : "Regeneration Level",
@@ -48,5 +48,20 @@
   "tooltip.relics.steam_boiler.ability.emergency_heating.description" : "Feel the temperature surge within the Boiler as it reaches a boiling crescendo. The explosive release of steam propels the player forward, providing a dynamic burst of momentum. Embrace the controlled chaos and let the Steam Boiler elevate your movement with a thrilling burst of propelled energy.",
   "tooltip.relics.steam_boiler.ability.emergency_heating.stat.cooldown.title" : "Cooldown",
   "tooltip.relics.steam_boiler.ability.emergency_heating.stat.cooldown.value" : "%1$s seconds.",
-  "tooltip.relics.steam_boiler.ability.emergency_heating.predicate.target" : "Boiler cools down."
+  "tooltip.relics.steam_boiler.ability.emergency_heating.predicate.target" : "Boiler cools down.",
+
+  "item.relics_vivid_light.truefire_burner" : "Truefire Burner",
+  "tooltip.relics.truefire_burner.leveling" : "\nEmbark on a mystic adventure with the Soulfire Burner—an ever-burning enigma fueled by the truths it holds. Your choices intertwine with its resilient flame, shaping your path through a captivating dance of destiny and desire.",
+  "tooltip.relics.truefire_burner.ability.eruption" : "Eruption",
+  "tooltip.relics.truefire_burner.ability.eruption.description" : "\nThe Truefire Burner propels players into the sky with a burst of fiery energy, leaving a scorching imprint upon the ground below.",
+  "tooltip.relics.truefire_burner.ability.eruption.stat.radius.title" : "Radius",
+  "tooltip.relics.truefire_burner.ability.eruption.stat.radius.value" : "%1$s blocks.",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff" : "Flamous Takeoff",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.description" : "The Truefire Burner unleashes its fiery onslaught upon nearby entities, dealing devastating damage that leaves those touched on the brink of oblivion. Beware, for the flames it imparts spell near-certain demise for those unfortunate enough to be caught in its path.",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.stat.strength.title" : "Strength",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.stat.strength.value" : "%1$s power units.",
+  "tooltip.relics.truefire_burner.ability.flamous_takeoff.predicate.takeoff" : "Reloading.",
+  "tooltip.relics.truefire_burner.ability.eruption.predicate.eruption" : "Reloading.",
+
+  "item.relics_vivid_light.static_claw" : "Static-energized Claw"
 }

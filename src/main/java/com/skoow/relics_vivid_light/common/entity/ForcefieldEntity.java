@@ -37,6 +37,11 @@ public class ForcefieldEntity extends Entity {
     }
 
     @Override
+    public boolean isAlwaysTicking() {
+        return true;
+    }
+
+    @Override
     public void tick() {
         super.tick();
         if(level().isClientSide()) {
@@ -48,9 +53,12 @@ public class ForcefieldEntity extends Entity {
     private void statificateEnemies() {
         ArrayList<Entity> entities = (ArrayList<Entity>) level().getEntities(this,getBoundingBox().inflate(getRadius()));
         entities.sort((e,c) -> (int) (distanceTo(c)*10-distanceTo(e)*10));
+        int max = 0;
         for (Entity e : entities) {
             if(e instanceof Player || e == this || !(e instanceof LivingEntity) || e instanceof ItemEntity || e.getType().getCategory().isFriendly()) continue;
             statificateEnemy((LivingEntity) e);
+            max++;
+            if(max >= 8) break;
         }
     }
 

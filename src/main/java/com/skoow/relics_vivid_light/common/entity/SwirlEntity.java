@@ -54,13 +54,20 @@ public class SwirlEntity extends ThrowableProjectile {
         attractEnemies();
     }
 
+    @Override
+    public boolean isAlwaysTicking() {
+        return true;
+    }
     private void attractEnemies() {
         ArrayList<Entity> entities = (ArrayList<Entity>) level().getEntities(this,getBoundingBox().inflate(getRadius()*1.2,getRadius()*2*1.2,getRadius()*1.2));
         entities.sort((e,c) -> (int) (distanceTo(c)*10-distanceTo(e)*10));
+        int max = 0;
         for (Entity e : entities) {
             if(e instanceof Player || e == this || !(e instanceof LivingEntity) || e instanceof ItemEntity || e.getType().getCategory().isFriendly()) continue;
             attract((LivingEntity) e);
             if(ticks%20 <= drownSpeed) drown(e);
+            max++;
+            if(max >= 5) break;
         }
         ticks++;
     }

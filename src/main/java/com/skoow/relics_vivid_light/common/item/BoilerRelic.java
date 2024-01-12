@@ -13,6 +13,7 @@ import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityEn
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityStat;
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicLevelingData;
 import it.hurts.sskirillss.relics.items.relics.base.utils.AbilityUtils;
+import it.hurts.sskirillss.relics.items.relics.base.utils.LevelingUtils;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -107,12 +108,14 @@ public class BoilerRelic extends RelicItem {
     @Override
     public void castActiveAbility(ItemStack stack, Player player, String ability, AbilityCastType type, AbilityCastStage stage) {
         super.castActiveAbility(stack, player, ability, type, stage);
+
         if(Objects.equals(ability, "emergency_heating")) {
             int cooldownTime = (int) (AbilityUtils.getAbilityValue(stack,"emergency_heating","cooldown")*20);
             AbilityUtils.setAbilityCooldown(stack,"emergency_heating",cooldownTime);
             player.setDeltaMovement(player.getLookAngle().multiply(3,1.5,3));
             player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,3*20,2));
             player.addEffect(new MobEffectInstance(MobEffects.CONFUSION,10*20,2));
+            LevelingUtils.addExperience(stack,3);
         }
     }
 }

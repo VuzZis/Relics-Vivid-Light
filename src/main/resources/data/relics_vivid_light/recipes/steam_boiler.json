@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " II",
+    "PPD",
+    "CCC"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:copper_ingot"
+    },
+    "D" : {
+      "item": "minecraft:diamond"
+    },
+    "P" : {
+      "item": "minecraft:iron_block"
+    },
+    "C" : {
+      "item": "minecraft:copper_block"
+    }
+  },
+  "result": {
+    "item": "relics_vivid_light:steam_boiler",
+    "count": 1
+  }
+}

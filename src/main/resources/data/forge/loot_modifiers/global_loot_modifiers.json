@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "entries": [
+    "relics_vivid_light:add_village_butcher",
+    "relics_vivid_light:add_fortress_chest",
+    "relics_vivid_light:add_ancient_city"
+  ]
+}

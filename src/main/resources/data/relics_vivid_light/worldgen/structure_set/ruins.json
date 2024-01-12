@@ -1,0 +1,16 @@
+{
+  "structures": [
+    {
+      "structure": "relics_vivid_light:sea_moss_ruin",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1314306481,
+    "frequency": 0.1,
+    "spread_type": "triangular",
+    "spacing": 20,
+    "separation": 5
+  }
+}

@@ -24,13 +24,18 @@ public class BubbleEntity extends ThrowableProjectile {
     int ticks = 0;
 
     @Override
+    public boolean isAlwaysTicking() {
+        return true;
+    }
+
+    @Override
     public void tick() {
         super.tick();
         setNoGravity(true);
         if(level().isClientSide()) {renderBubble(); return;}
         setDeltaMovement(0,Math.sin(Math.toRadians(tickCount*9))/4,0);
         ticks++;
-        if(capturedEntity == null) return;
+        if(capturedEntity == null || ticks > 20) return;
         capturedEntity.startRiding(this);
         capturedEntity.setInvulnerable(true);
     }

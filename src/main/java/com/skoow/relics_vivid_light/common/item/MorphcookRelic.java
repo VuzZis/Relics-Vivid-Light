@@ -8,6 +8,7 @@ import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityDa
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityEntry;
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityStat;
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicLevelingData;
+import it.hurts.sskirillss.relics.items.relics.base.utils.LevelingUtils;
 import it.hurts.sskirillss.relics.items.relics.hands.WoolMittenItem;
 import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
 import net.minecraft.core.RegistryAccess;
@@ -81,6 +82,7 @@ public class MorphcookRelic extends RelicItem {
             if(curTime >= smokeTime) {
                 stack.getOrCreateTag().putInt("smokprog",0);
                 ItemStack newItem = recipe.get().getResultItem(RegistryAccess.EMPTY).copy();
+                LevelingUtils.addExperience(stack,2);
                 int freeSlot = inv.getFreeSlot();
                 if(inv.getSlotWithRemainingSpace(newItem) >= 0) freeSlot = inv.getSlotWithRemainingSpace(newItem);
                 if(freeSlot < 0) {
@@ -109,11 +111,15 @@ public class MorphcookRelic extends RelicItem {
     private void useFleshFeeding(Player player) {
         ArrayList<Entity> entities = (ArrayList<Entity>) player.level().getEntities(player,player.getBoundingBox().inflate(5));
         int saturation = 0;
+        int max = 0;
         for (Entity e : entities) {
             if(e instanceof Player || !(e instanceof LivingEntity) || e instanceof ItemEntity || e.getType().getCategory().isFriendly()) continue;
             int damage = (int) Math.min(15,((LivingEntity) e).getHealth());
             saturation += damage / 5;
             e.hurt(player.level().damageSources().starve(),damage);
+            max++;
+
+            if(max >= 6) break;
         }
         player.getFoodData().eat(saturation,saturation);
     }

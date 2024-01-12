@@ -47,20 +47,23 @@ public class StaticChargeEntity extends ThrowableProjectile {
         super.tick();
         setDeltaMovement(deltaMovement);
         if (level().isClientSide) {
-            ParticleUtils.createBall(
-                    new CircleTintData(isEssential ? color2: color, isEssential ? 0.05F : 0.3F , 40, 0.85F, false),
-                    prevPos != null ? prevPos : position(),
-                    level(),
-                    1,
-                    0);
-            ParticleUtils.createBall(
-                    new CircleTintData(isEssential ? color2 : color, isEssential ? 0.1F :0.8F, 100, 0.85F, false),
-                    this.position(),
-                    level(),
-                    1,
-                    0);
+            level().addParticle(
+                    new CircleTintData(isEssential ? color2 : color, 2F, 10,0.2f,false),
+                    getX(), getY(), getZ(),
+                    0,0,0);
+            for(int i = 0; i < 5; i++) {
+                level().addParticle(
+                        new CircleTintData(isEssential ? color2 : color, 1F, 15,0.85f,false),
+                        getX()+random.nextGaussian()/2, getY()+random.nextGaussian()/2, getZ()+random.nextGaussian()/2,
+                        0,0,0);
+            }
+            if(prevPos != null)
+                level().addParticle(
+                        new CircleTintData(isEssential ? color2 : color, 1F, 20,0.2f,false),
+                        prevPos.x, prevPos.y, prevPos.z,
+                        0,0,0);
             ParticleUtils.createLine(
-                    new CircleTintData(color2, isEssential ? 0.025F : 0.2F, 50, 0.85F, false),
+                    new CircleTintData(color2, isEssential ? 0.025F : 0.2F, 40, 0.1F, false),
                     level(),
                     prevPos != null ? prevPos : position(),
                     position(),
@@ -107,6 +110,11 @@ public class StaticChargeEntity extends ThrowableProjectile {
     }
 
     @Override
+    public boolean isAlwaysTicking() {
+        return true;
+    }
+
+    @Override
     public boolean canBeCollidedWith() {
         return false;
     }
@@ -119,7 +127,7 @@ public class StaticChargeEntity extends ThrowableProjectile {
     public Entity getClosestEntityForAttack(Entity prevEntity) {
 
         ArrayList<Entity> entities = (ArrayList<Entity>) level().getEntities(this,getBoundingBox().inflate(25));
-        entities.sort((e,c) -> (int) (distanceTo(c)*10-distanceTo(e)*10));
+        entities.sort((e,c) -> (int) (-distanceTo(c)*10+distanceTo(e)*10));
         Entity selectedEntity = null;
         for (Entity e : entities) {
             if(e instanceof Player || e == this || e.getId() == prevEntity.getId() || e instanceof ItemEntity || e.getType().getCategory().isFriendly()) continue;
@@ -137,7 +145,7 @@ public class StaticChargeEntity extends ThrowableProjectile {
 
     @Override
     public void checkDespawn() {
-        if(ticks > 20*20) {
+        if(ticks > 8*20) {
             this.discard();
         }
     }

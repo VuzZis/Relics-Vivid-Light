@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "OOI",
+    "C  "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "O" : {
+      "item" : "minecraft:gold_ingot"
+    },
+    "C" : {
+      "item" : "minecraft:stick"
+    },
+    "N" : {
+      "item" : "relics_vivid_light:static_claw"
+    }
+  },
+  "result": {
+    "item": "relics_vivid_light:static_rifle",
+    "count": 1
+  }
+}

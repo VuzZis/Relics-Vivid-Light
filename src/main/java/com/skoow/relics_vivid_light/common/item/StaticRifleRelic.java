@@ -4,6 +4,7 @@ import com.skoow.relics_vivid_light.common.entity.ForcefieldEntity;
 import com.skoow.relics_vivid_light.common.entity.StaticChargeEntity;
 import com.skoow.relics_vivid_light.common.registry.EntityRegistry;
 import it.hurts.sskirillss.relics.client.tooltip.base.RelicStyleData;
+import it.hurts.sskirillss.relics.items.relics.SpaceDissectorItem;
 import it.hurts.sskirillss.relics.items.relics.base.RelicItem;
 import it.hurts.sskirillss.relics.items.relics.base.data.base.RelicData;
 import it.hurts.sskirillss.relics.items.relics.base.data.cast.AbilityCastStage;
@@ -13,6 +14,7 @@ import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityEn
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicAbilityStat;
 import it.hurts.sskirillss.relics.items.relics.base.data.leveling.RelicLevelingData;
 import it.hurts.sskirillss.relics.items.relics.base.utils.AbilityUtils;
+import it.hurts.sskirillss.relics.items.relics.base.utils.LevelingUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -93,8 +95,10 @@ public class StaticRifleRelic extends RelicItem {
     }
 
     private void useBzShot(ItemStack stack, Player player) {
+        LevelingUtils.addExperience(stack,1);
         createBzShot(stack,player,new Vec3(0,0,0),false);
         if(!AbilityUtils.isAbilityMaxLevel(stack,"bzzshot")) return;
+        LevelingUtils.addExperience(stack,1);
         createBzShot(stack,player,new Vec3(-3,0,0),true);
         createBzShot(stack,player,new Vec3(3,0,0),true);
         createBzShot(stack,player,new Vec3(0,0,3),true);
@@ -131,6 +135,7 @@ public class StaticRifleRelic extends RelicItem {
             return InteractionResultHolder.fail(stack);
         }
         if(forceFieldCooldown > 0) {return super.use(level, player, hand);}
+        LevelingUtils.addExperience(stack,10);
         useForcefield(stack,player);
         StaticRifleRelic.forceFieldCooldown = defFieldCooldown;
         return super.use(level, player, hand);
